@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - REVIVA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Tambahan font Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS untuk perbaikan visual */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .sidebar {
+            background: linear-gradient(135deg, #198754 0%, #0d6235 100%);
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        .bg-gradient-success {
+            background: linear-gradient(45deg, #198754 0%, #20c997 100%);
+        }
+
+        .activity-item {
+            transition: background-color 0.2s ease;
+            padding: 1.25rem;
+        }
+
+        .activity-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .table th {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        .badge {
+            padding: 0.5em 0.75em;
+            font-weight: 500;
+        }
+
+        .btn {
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .modal-content {
+            border: none;
+            border-radius: 1rem;
+        }
+
+        .form-control, .form-select {
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+        }
+
+        .chart-container {
+            padding: 1rem;
+            background: #fff;
+            border-radius: 1rem;
+        }
+
+        /* Spacing dan padding yang lebih konsisten */
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-header {
+            padding: 1.25rem 1.5rem;
+            background: transparent;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* Animasi hover untuk interaktivitas */
+        .list-group-item {
+            transition: all 0.2s ease;
+        }
+
+        .list-group-item:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        /* Improve table responsiveness */
+        .table-responsive {
+            border-radius: 0.5rem;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="d-flex">
+        <!-- Sidebar yang diperbarui -->
+        <div class="sidebar text-white">
+            <div class="sidebar-header p-3 d-flex align-items-center gap-3">
+                <a href="/index.html" class="text-white text-decoration-none">
+                    <img src="/img/logo.png" alt="REVIVA" height="35" class="rounded">
+                </a>
+            </div>
+            
+            <div class="sidebar-divider my-2"></div>
+
+            <div class="sidebar-menu">
+                <div class="menu-label ps-3 mb-2">
+                    <small class="text-white-50 text-uppercase">Menu Utama</small>
+                </div>
+                <div class="list-group list-group-flush">
+                    <a href="dashboard-user.html" class="list-group-item list-group-item-action active">
+                        <i class="fas fa-home me-2"></i>
+                        <span>Overview</span>
+                    </a>
+                    <a href="laporan.html" class="list-group-item list-group-item-action">
+                        <i class="fas fa-plus-circle me-2"></i>
+                        <span>Lapor Minyak</span>
+                    </a>
+                    <a href="history.html" class="list-group-item list-group-item-action">
+                        <i class="fas fa-history me-2"></i>
+                        <span>Riwayat</span>
+                        <i class="fas fa-chevron-right ms-auto small"></i>
+                    </a>
+                </div>
+
+                <div class="menu-label ps-3 mb-2 mt-4">
+                    <small class="text-white-50 text-uppercase">Setting</small>
+                </div>
+                <div class="list-group list-group-flush">
+                    <a href="pengaturan.html" class="list-group-item list-group-item-action">
+                        <i class="fas fa-cog me-2"></i>
+                        <span>Pengaturan</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="sidebar-divider my-2"></div>
+
+            <div class="sidebar-footer p-3">
+                <div class="d-flex align-items-center mb-3">
+                    <img src="https://ui-avatars.com/api/?name=User+Name" class="rounded-circle me-2" width="32">
+                    <div class="user-info">
+                        <h6 class="mb-0">User Name</h6>
+                        <small class="text-white-50">Member</small>
+                    </div>
+                </div>
+                <a href="#help" class="btn btn-outline-light btn-sm w-100">
+                    <i class="fas fa-question-circle me-2"></i>Bantuan
+                </a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white">
+                <div class="container-fluid">
+                    <button class="btn btn-link" id="sidebarToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-user me-2"></i>User Name
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#profile">Profile</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#" onclick="handleLogout()">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <div class="container-fluid py-4">
+                <!-- Quick Actions -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="card bg-light border-0">
+                            <div class="card-body">
+                                <h5 class="text-success mb-3">Selamat datang, User Name! 👋</h5>
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#laporMinyakModal">
+                                        <i class="fas fa-plus-circle me-2"></i>Lapor Minyak
+                                    </button>
+                                    <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#panduanModal">
+                                        <i class="fas fa-book me-2"></i>Panduan
+                                    </button>
+                                    <button class="btn btn-outline-success">
+                                        <i class="fas fa-headset me-2"></i>Hubungi Admin
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="row">
+                    <div class="col-xl-6 col-md-6 mb-4">
+                        <div class="card bg-gradient-success text-white h-100">
+                            <div class="card-body p-4">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <div class="text-xs text-uppercase mb-1 fw-bold">Total Kontribusi</div>
+                                        <div class="h3 mb-0">15 L</div>
+                                        <div class="mt-2 small">
+                                            <i class="fas fa-arrow-up me-1"></i>2L dari bulan lalu
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-oil-can fa-2x text-white-50"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mini Stats dengan data transparansi -->
+                    <div class="col-xl-6 col-md-12 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-4">
+                                        <div class="p-3 bg-light rounded">
+                                            <div class="text-success small fw-bold">Terkumpul</div>
+                                            <div class="h5 mb-0">250 L</div>
+                                            <small class="text-muted">Total</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="p-3 bg-light rounded">
+                                            <div class="text-warning small fw-bold">Diproses</div>
+                                            <div class="h5 mb-0">45 L</div>
+                                            <small class="text-muted">Dalam proses</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="p-3 bg-light rounded">
+                                            <div class="text-info small fw-bold">Produk</div>
+                                            <div class="h5 mb-0">100 L</div>
+                                            <small class="text-muted">Biodiesel</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grafik & Riwayat -->
+                <div class="row mb-4">
+                    <!-- Grafik Kontribusi -->
+                    <div class="col-lg-8">
+                        <div class="card shadow">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-success">Grafik Kontribusi Minyak</h6>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="contributionChart" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Aktivitas Terakhir -->
+                    <div class="col-lg-4">
+                        <div class="card shadow">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-success">Aktivitas Terakhir</h6>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="activity-list">
+                                    <div class="activity-item p-3 border-bottom">
+                                        <div class="d-flex align-items-center mb-2">
+                                            <span class="badge bg-success me-2">✓</span>
+                                            <strong>Pengumpulan Berhasil</strong>
+                                        </div>
+                                        <p class="mb-0 small">Minyak jelantah 3L telah diterima</p>
+                                        <small class="text-muted">Hari ini 10:30</small>
+                                    </div>
+                                    <div class="activity-item p-3 border-bottom">
+                                        <div class="d-flex align-items-center mb-2">
+                                            <span class="badge bg-warning me-2">⌛</span>
+                                            <strong>Menunggu Verifikasi</strong>
+                                        </div>
+                                        <p class="mb-0 small">Pengajuan 2L sedang diproses</p>
+                                        <small class="text-muted">Kemarin 15:45</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabel Riwayat dengan Filter -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h6 class="m-0 font-weight-bold text-success">Riwayat Pengumpulan</h6>
+                            </div>
+                            <div class="col-auto d-flex gap-2">
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control" placeholder="Cari...">
+                                    <button class="btn btn-success"><i class="fas fa-search"></i></button>
+                                </div>
+                                <select class="form-select form-select-sm">
+                                    <option>Semua Status</option>
+                                    <option>Diterima</option>
+                                    <option>Menunggu</option>
+                                </select>
+                                <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#laporMinyakModal">
+                                    <i class="fas fa-plus me-2"></i>Lapor Minyak
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Tanggal</th>
+                                        <th>Jumlah (L)</th>
+                                        <th>Jenis Minyak</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2024-01-15</td>
+                                        <td>3</td>
+                                        <td>Minyak Jelantah</td>
+                                        <td><span class="badge bg-success">Diterima</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2024-01-10</td>
+                                        <td>2</td>
+                                        <td>Minyak Goreng</td>
+                                        <td><span class="badge bg-warning text-dark">Menunggu</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Lapor Minyak -->
+    <div class="modal fade" id="laporMinyakModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Lapor Pengumpulan Minyak</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Jumlah (L)</label>
+                            <input type="number" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Jenis Minyak</label>
+                            <select class="form-select">
+                                <option>Minyak Jelantah</option>
+                                <option>Minyak Goreng</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Foto Bukti</label>
+                            <input type="file" class="form-control" accept="image/*">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Catatan</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-success">Kirim Laporan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Panduan -->
+    <div class="modal fade" id="panduanModal" tabindex="-1" aria-labelledby="panduanModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Panduan Penggunaan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="accordion" id="accordionPanduan">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                    Cara Melaporkan Minyak
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionPanduan">
+                                <div class="accordion-body">
+                                    <ol>
+                                        <li>Klik tombol "Lapor Minyak" di menu atau halaman</li>
+                                        <li>Isi jumlah minyak yang akan dikumpulkan</li>
+                                        <li>Pilih jenis minyak</li>
+                                        <li>Upload foto bukti minyak</li>
+                                        <li>Tambahkan catatan jika diperlukan</li>
+                                        <li>Klik "Kirim Laporan"</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tambahkan accordion item lainnya sesuai kebutuhan -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="closePanduanModal()">Mengerti</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Hubungi Admin -->
+    <div class="modal fade" id="hubungiAdminModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Hubungi Admin</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Subjek</label>
+                            <select class="form-select">
+                                <option>Pilih subjek...</option>
+                                <option>Bantuan Pengumpulan</option>
+                                <option>Masalah Teknis</option>
+                                <option>Pertanyaan Umum</option>
+                                <option>Lainnya</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Pesan</label>
+                            <textarea class="form-control" rows="4" placeholder="Tuliskan pesan Anda..."></textarea>
+                        </div>
+                        <div class="d-flex gap-2 mb-3">
+                            <div class="bg-light p-3 rounded flex-grow-1">
+                                <i class="fas fa-phone text-success me-2"></i>
+                                <span>+62 123 4567 890</span>
+                            </div>
+                            <div class="bg-light p-3 rounded flex-grow-1">
+                                <i class="fas fa-envelope text-success me-2"></i>
+                                <span>admin@reviva.com</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-success">Kirim Pesan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/dashboard.js"></script>
+    
+    <!-- Tambahkan Chart.js sebelum script grafik -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Tambahan Script untuk Grafik -->
+    <script>
+        const ctx = document.getElementById('contributionChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des'],
+                datasets: [{
+                    label: 'Kontribusi Minyak (L)',
+                    data: [2, 3, 5, 2, 4, 3, 6, 4, 5, 3, 4, 2],
+                    backgroundColor: '#198754',
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Kontribusi Minyak Tahun 2024'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Jumlah (Liter)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Hapus event listener lama
+        // Tambahkan fungsi untuk handling modal
+        let panduanModal;
+        let hubungiAdminModal;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inisialisasi modal
+            panduanModal = new bootstrap.Modal(document.getElementById('panduanModal'), {
+                backdrop: 'static',
+                keyboard: false
+            });
+            
+            hubungiAdminModal = new bootstrap.Modal(document.getElementById('hubungiAdminModal'), {
+                backdrop: 'static',
+                keyboard: false
+            });
+
+            // Event listener untuk tombol panduan
+            document.querySelector('button[data-bs-target="#panduanModal"]').addEventListener('click', function() {
+                panduanModal.show();
+            });
+
+            // Event listener untuk tombol hubungi admin
+            document.querySelector('button:has(.fa-headset)').addEventListener('click', function() {
+                hubungiAdminModal.show();
+            });
+        });
+
+        // Fungsi untuk menutup modal
+        function closePanduanModal() {
+            panduanModal.hide();
+            // Bersihkan backdrop yang tersisa
+            document.body.classList.remove('modal-open');
+            const backdrop = document.querySelector('.modal-backdrop');
+            if (backdrop) {
+                backdrop.remove();
+            }
+        }
+
+        function handleLogout() {
+            // Langsung redirect ke halaman utama
+            window.location.href = '/index.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - REVIVA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="d-flex">
+        <!-- Sidebar yang diperbarui -->
+        <div class="sidebar text-white">
+            <div class="sidebar-header p-3 d-flex align-items-center gap-3">
+                <a href="/index.html" class="text-white text-decoration-none">
+                    <img src="/img/logo.png" alt="REVIVA" height="35" class="rounded">
+                </a>
+            </div>
+            
+            <div class="sidebar-divider my-2"></div>
+
+            <div class="sidebar-menu">
+                <div class="menu-label ps-3 mb-2">
+                    <small class="text-white-50 text-uppercase">Menu Utama</small>
+                </div>
+                <div class="list-group list-group-flush">
+                    <a href="dashboard-admin.html" class="list-group-item list-group-item-action active">
+                        <i class="fas fa-tachometer-alt me-2"></i>
+                        <span>Dashboard</span>
+                        <span class="badge rounded-pill bg-white text-success ms-auto">6</span>
+                    </a>
+                    <a href="users.html" class="list-group-item list-group-item-action">
+                        <i class="fas fa-users me-2"></i>
+                        <span>Pengguna</span>
+                        <span class="badge rounded-pill bg-light text-dark ms-auto">50</span>
+                    </a>
+                    <a href="minyak.html" class="list-group-item list-group-item-action">
+                        <i class="fas fa-oil-can me-2"></i>
+                        <span>Data Minyak</span>
+                        <i class="fas fa-chevron-right ms-auto small"></i>
+                    </a>
+                </div>
+
+                <div class="menu-label ps-3 mb-2 mt-4">
+                    <small class="text-white-50 text-uppercase">Analisis</small>
+                </div>
+                <div class="list-group list-group-flush">
+                    <a href="laporan.html" class="list-group-item list-group-item-action">
+                        <i class="fas fa-chart-bar me-2"></i>
+                        <span>Laporan</span>
+                    </a>
+                    <a href="pengaturan.html" class="list-group-item list-group-item-action">
+                        <i class="fas fa-cog me-2"></i>
+                        <span>Pengaturan</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="sidebar-divider my-2"></div>
+
+            <div class="sidebar-footer p-3">
+                <div class="d-flex align-items-center mb-3">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User" class="rounded-circle me-2" width="32">
+                    <div class="user-info">
+                        <h6 class="mb-0">Admin User</h6>
+                        <small class="text-white-50">Super Admin</small>
+                    </div>
+                </div>
+                <a href="#help" class="btn btn-outline-light btn-sm w-100">
+                    <i class="fas fa-question-circle me-2"></i>Bantuan
+                </a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white">
+                <div class="container-fluid">
+                    <button class="btn btn-link" id="sidebarToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown me-3">
+                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-bell"></i>
+                                <span class="badge bg-danger">3</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#">Laporan baru</a></li>
+                                <li><a class="dropdown-item" href="#">Pengajuan menunggu</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-user-shield me-2"></i>Admin
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="pengaturan.html">Profil</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#" onclick="handleLogout()">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <div class="container-fluid py-4">
+                <!-- Stats Cards dengan warna -->
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card bg-gradient-success text-white h-100">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <div class="text-xs text-white text-uppercase mb-1 fw-bold">
+                                            Total Minyak Terkumpul</div>
+                                        <div class="h3 mb-0 font-weight-bold">250 L</div>
+                                        <div class="mt-2 text-white-50 small">
+                                            <i class="fas fa-arrow-up me-1"></i>12% dari bulan lalu
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-oil-can fa-2x text-white-50"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card bg-gradient-primary text-white h-100">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <div class="text-xs text-white-50 text-uppercase mb-1">
+                                            Total Pengguna</div>
+                                        <div class="h3 mb-0 font-weight-bold">50</div>
+                                        <div class="mt-2 text-white-50 small">
+                                            <i class="fas fa-arrow-up me-1"></i>8 pengguna baru
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-users fa-2x text-white-50"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card bg-gradient-warning text-dark h-100">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <div class="text-xs text-uppercase mb-1">
+                                            Pengajuan Pending</div>
+                                        <div class="h3 mb-0 font-weight-bold">5</div>
+                                        <div class="mt-2 small">
+                                            <i class="fas fa-clock me-1"></i>Perlu ditinjau
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-clock fa-2x text-dark-50"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card bg-gradient-info h-100">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <div class="text-xs text-dark text-uppercase mb-1 fw-bold">
+                                            Produk Dihasilkan</div>
+                                        <div class="h3 mb-0 font-weight-bold text-dark">100 L</div>
+                                        <div class="mt-2 text-dark small">
+                                            <i class="fas fa-flask me-1"></i>Biodiesel
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-flask fa-2x text-dark opacity-50"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grafik & Aktivitas -->
+                <div class="row mb-4">
+                    <div class="col-lg-8">
+                        <div class="card shadow">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-success">Grafik Pengumpulan Minyak</h6>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="oilCollectionChart" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card shadow">
+                            <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                                <h6 class="m-0 font-weight-bold text-success">Aktivitas Terbaru</h6>
+                                <a href="#" class="text-success text-decoration-none small">Lihat Semua</a>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="activity-list">
+                                    <div class="activity-item">
+                                        <span class="activity-badge bg-success"></span>
+                                        <div class="activity-content">
+                                            <p class="mb-0 fw-bold">Budi Santoso</p>
+                                            <p class="mb-0">mengumpulkan 5L minyak</p>
+                                            <small class="text-muted">Hari ini 10:30</small>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <span class="activity-badge bg-primary"></span>
+                                        <div class="activity-content">
+                                            <p class="mb-0 fw-bold">Pengajuan Diterima</p>
+                                            <p class="mb-0">dari Ani Wijaya</p>
+                                            <small class="text-muted">Hari ini 09:15</small>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <span class="activity-badge bg-info"></span>
+                                        <div class="activity-content">
+                                            <p class="mb-0 fw-bold">Produksi Selesai</p>
+                                            <p class="mb-0">Biodiesel 20L</p>
+                                            <small class="text-muted">Kemarin 15:45</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Tables -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                                <h6 class="m-0 font-weight-bold text-success">Data Pengumpulan Minyak</h6>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-outline-success btn-sm">
+                                        <i class="fas fa-file-export me-2"></i>Export
+                                    </button>
+                                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addDataModal">
+                                        <i class="fas fa-plus me-2"></i>Tambah Data
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Tanggal</th>
+                                                <th>Nama</th>
+                                                <th>Jumlah (L)</th>
+                                                <th>Jenis Minyak</th>
+                                                <th>Status</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>2024-01-15</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="https://ui-avatars.com/api/?name=Budi+Santoso" class="rounded-circle me-2" width="30">
+                                                        Budi Santoso
+                                                    </div>
+                                                </td>
+                                                <td>5</td>
+                                                <td>Minyak Goreng</td>
+                                                <td><span class="badge bg-success">Diterima</span></td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-sm btn-info" title="Edit"><i class="fas fa-edit"></i></button>
+                                                        <button class="btn btn-sm btn-success" title="Detail"><i class="fas fa-eye"></i></button>
+                                                        <button class="btn btn-sm btn-danger" title="Hapus"><i class="fas fa-trash"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>2024-01-14</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="https://ui-avatars.com/api/?name=Ani+Wijaya" class="rounded-circle me-2" width="30">
+                                                        Ani Wijaya
+                                                    </div>
+                                                </td>
+                                                <td>3</td>
+                                                <td>Minyak Jelantah</td>
+                                                <td><span class="badge bg-warning text-dark">Menunggu</span></td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-sm btn-info" title="Edit"><i class="fas fa-edit"></i></button>
+                                                        <button class="btn btn-sm btn-success" title="Detail"><i class="fas fa-eye"></i></button>
+                                                        <button class="btn btn-sm btn-danger" title="Hapus"><i class="fas fa-trash"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- Pagination -->
+                                <nav aria-label="Page navigation" class="mt-4">
+                                    <ul class="pagination justify-content-end">
+                                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Data Modal -->
+    <div class="modal fade" id="addDataModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Data Minyak</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Nama Pengguna</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Jumlah (L)</label>
+                            <input type="number" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Status</label>
+                            <select class="form-select">
+                                <option>Menunggu</option>
+                                <option>Diterima</option>
+                                <option>Ditolak</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-success">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/dashboard.js"></script>
+    <!-- Tambahkan Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Data dummy untuk grafik
+        const ctx = document.getElementById('oilCollectionChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+                datasets: [{
+                    label: 'Pengumpulan Minyak (L)',
+                    data: [65, 59, 80, 81, 56, 55],
+                    borderColor: '#198754',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+
+        function handleLogout() {
+            // Langsung redirect ke halaman utama
+            window.location.href = '/index.html';
+        }
+    </script>
+</body>
+</html>

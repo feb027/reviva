@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - REVIVA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Styling untuk card statistik */
+        .stat-card {
+            transition: transform 0.2s ease;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+        .stat-card:hover {
+            transform: translateY(-3px);
+        }
+        .stat-card .card-body {
+            padding: 1.5rem;
+        }
+        .stat-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Styling untuk filter section */
+        .filter-section {
+            background: #f8f9fa;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .filter-section .form-control,
+        .filter-section .form-select {
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e9ecef;
+            transition: all 0.2s ease;
+        }
+        .filter-section .form-control:focus,
+        .filter-section .form-select:focus {
+            border-color: #198754;
+            box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.15);
+        }
+
+        /* Styling untuk tabel */
+        .table {
+            vertical-align: middle;
+        }
+        .table thead th {
+            background: #f8f9fa;
+            padding: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        .table tbody tr {
+            transition: all 0.2s ease;
+        }
+        .table tbody tr:hover {
+            background-color: rgba(25, 135, 84, 0.05);
+        }
+        .table td {
+            padding: 1rem;
+        }
+
+        /* Badge styling */
+        .badge {
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: 500;
+        }
+        .badge.bg-success {
+            background-color: rgba(25, 135, 84, 0.1) !important;
+            color: #198754;
+        }
+        .badge.bg-warning {
+            background-color: rgba(255, 193, 7, 0.1) !important;
+            color: #ffc107;
+        }
+        .badge.bg-danger {
+            background-color: rgba(220, 53, 69, 0.1) !important;
+            color: #dc3545;
+        }
+
+        /* Button styling */
+        .btn-outline-success {
+            border-radius: 0.75rem;
+            padding: 0.5rem 1.25rem;
+            transition: all 0.2s ease;
+        }
+        .btn-outline-success:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px rgba(25, 135, 84, 0.1);
+        }
+
+        /* Pagination styling */
+        .pagination {
+            gap: 0.5rem;
+        }
+        .page-link {
+            border-radius: 0.5rem !important;
+            padding: 0.75rem 1rem;
+            border: none;
+            color: #198754;
+        }
+        .page-item.active .page-link {
+            background-color: #198754;
+            border-color: #198754;
+        }
+    </style>
+</head>
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="sidebar text-white">
+            <div class="sidebar-header p-3 d-flex align-items-center gap-3">
+                <img src="/img/logo.png" alt="REVIVA" height="35" class="rounded">
+            </div>
+            
+            <div class="sidebar-divider my-2"></div>
+
+            <div class="sidebar-menu">
+                <div class="menu-label ps-3 mb-2">
+                    <small class="text-white-50 text-uppercase">Menu Utama</small>
+                </div>
+                <div class="list-group list-group-flush">
+                    <a href="dashboard-user.html" class="list-group-item list-group-item-action">
+                        <i class="fas fa-home me-2"></i>
+                        <span>Overview</span>
+                    </a>
+                    <a href="laporan.html" class="list-group-item list-group-item-action">
+                        <i class="fas fa-plus-circle me-2"></i>
+                        <span>Lapor Minyak</span>
+                    </a>
+                    <a href="history.html" class="list-group-item list-group-item-action active">
+                        <i class="fas fa-history me-2"></i>
+                        <span>Riwayat</span>
+                        <i class="fas fa-chevron-right ms-auto small"></i>
+                    </a>
+                </div>
+
+                <div class="menu-label ps-3 mb-2 mt-4">
+                    <small class="text-white-50 text-uppercase">Setting</small>
+                </div>
+                <div class="list-group list-group-flush">
+                    <a href="pengaturan.html" class="list-group-item list-group-item-action">
+                        <i class="fas fa-cog me-2"></i>
+                        <span>Pengaturan</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="sidebar-divider my-2"></div>
+
+            <div class="sidebar-footer p-3">
+                <div class="d-flex align-items-center mb-3">
+                    <img src="https://ui-avatars.com/api/?name=User+Name" class="rounded-circle me-2" width="32">
+                    <div class="user-info">
+                        <h6 class="mb-0">User Name</h6>
+                        <small class="text-white-50">Member</small>
+                    </div>
+                </div>
+                <a href="#help" class="btn btn-outline-light btn-sm w-100">
+                    <i class="fas fa-question-circle me-2"></i>Bantuan
+                </a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white">
+                <div class="container-fluid">
+                    <button class="btn btn-link" id="sidebarToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-user me-2"></i>User Name
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#profile">Profile</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="index.html">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <div class="container-fluid py-4">
+                <!-- Header Section -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="card bg-light border-0">
+                            <div class="card-body">
+                                <h5 class="text-success mb-3">Riwayat Pengumpulan Minyak</h5>
+                                <div class="row g-2">
+                                    <div class="col-md-4">
+                                        <div class="card stat-card bg-gradient-success text-white">
+                                            <div class="card-body">
+                                                <h6 class="text-uppercase small">Total Pengumpulan</h6>
+                                                <h3 class="mb-0">15 L</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card stat-card bg-white">
+                                            <div class="card-body">
+                                                <h6 class="text-success text-uppercase small">Bulan Ini</h6>
+                                                <h3 class="mb-0">5 L</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card stat-card bg-white">
+                                            <div class="card-body">
+                                                <h6 class="text-success text-uppercase small">Total Transaksi</h6>
+                                                <h3 class="mb-0">8 kali</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter Section -->
+                <div class="card shadow mb-4">
+                    <div class="card-body filter-section">
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label class="form-label">Rentang Tanggal</label>
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Sampai</label>
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label">Status</label>
+                                <select class="form-select">
+                                    <option value="">Semua</option>
+                                    <option value="diterima">Diterima</option>
+                                    <option value="menunggu">Menunggu</option>
+                                    <option value="ditolak">Ditolak</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label">Jenis Minyak</label>
+                                <select class="form-select">
+                                    <option value="">Semua</option>
+                                    <option value="jelantah">Minyak Jelantah</option>
+                                    <option value="goreng">Minyak Goreng</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 d-flex align-items-end">
+                                <button class="btn btn-success w-100">
+                                    <i class="fas fa-search me-2"></i>Filter
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabel Riwayat -->
+                <div class="card shadow">
+                    <div class="card-header py-3">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h6 class="m-0 font-weight-bold text-success">Detail Riwayat Pengumpulan</h6>
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn btn-sm btn-outline-success me-2">
+                                    <i class="fas fa-download me-2"></i>Export
+                                </button>
+                                <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#laporMinyakModal">
+                                    <i class="fas fa-plus me-2"></i>Lapor Minyak
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID Transaksi</th>
+                                        <th>Tanggal</th>
+                                        <th>Jumlah (L)</th>
+                                        <th>Jenis Minyak</th>
+                                        <th>Status</th>
+                                        <th>Catatan</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><small class="text-muted">#TRX240115</small></td>
+                                        <td>15 Jan 2024</td>
+                                        <td>3 L</td>
+                                        <td>Minyak Jelantah</td>
+                                        <td><span class="badge bg-success">Diterima</span></td>
+                                        <td>Pengumpulan di depot utama</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-success">Detail</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><small class="text-muted">#TRX240110</small></td>
+                                        <td>10 Jan 2024</td>
+                                        <td>2 L</td>
+                                        <td>Minyak Goreng</td>
+                                        <td><span class="badge bg-warning text-dark">Menunggu</span></td>
+                                        <td>Menunggu verifikasi admin</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-success">Detail</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><small class="text-muted">#TRX240105</small></td>
+                                        <td>5 Jan 2024</td>
+                                        <td>4 L</td>
+                                        <td>Minyak Jelantah</td>
+                                        <td><span class="badge bg-danger">Ditolak</span></td>
+                                        <td>Kualitas tidak memenuhi standar</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-success">Detail</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Pagination -->
+                        <nav aria-label="Page navigation" class="mt-4">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/dashboard.js"></script>
+
+    <!-- Tambahan Script untuk Grafik -->
+    <script>
+        const ctx = document.getElementById('contributionChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+                datasets: [{
+                    label: 'Kontribusi Minyak (L)',
+                    data: [2, 3, 5, 2, 1, 3],
+                    backgroundColor: '#198754',
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

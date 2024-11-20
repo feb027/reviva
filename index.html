@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REVIVA - Konversi Minyak Bekas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tambahkan preloader CSS -->
+    <style>
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .preloader.fade-out {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+    </style>
+    <!-- Tambahkan AOS CSS untuk animasi scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* Tambahan styling untuk meningkatkan interaktivitas */
+        .feature-card {
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .impact-card {
+            transition: all 0.3s ease;
+        }
+        
+        .impact-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .benefit-card {
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        /* Perbaikan spacing dan kontras */
+        .section {
+            padding: 6rem 0;
+        }
+        
+        .hero-section {
+            padding: 8rem 0 6rem;
+        }
+        
+        .section-title {
+            margin-bottom: 4rem;
+        }
+        
+        /* Efek hover untuk tombol */
+        .btn {
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Tambahkan preloader -->
+    <div class="preloader">
+        <div class="spinner-border text-success" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Navbar yang diperbaiki -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="img/logo.png" alt="REVIVA" height="40" class="me-2">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item nav-item-animated">
+                        <a class="nav-link active" href="index.html"><i class="fas fa-home me-1"></i> Beranda</a>
+                    </li>
+                    <li class="nav-item dropdown nav-item-animated">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-info-circle me-1"></i> Informasi
+                        </a>
+                        <ul class="dropdown-menu animated-dropdown">
+                            <li><a class="dropdown-item" href="about.html"><i class="fas fa-building me-2"></i>Tentang Kami</a></li>
+                            <li><a class="dropdown-item" href="metodologi.html"><i class="fas fa-clipboard-list me-2"></i>Metodologi</a></li>
+                            <li><a class="dropdown-item" href="team.html"><i class="fas fa-users me-2"></i>Tim Kami</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item nav-item-animated">
+                        <a class="nav-link" href="contact.html"><i class="fas fa-phone me-1"></i> Kontak</a>
+                    </li>
+                    <li class="nav-item nav-item-animated">
+                        <a class="nav-link btn" href="register.html">
+                            <i class="fas fa-user-plus me-1"></i> Daftar
+                        </a>
+                    </li>
+                    <li class="nav-item nav-item-animated">
+                        <a class="nav-link btn" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            <i class="fas fa-sign-in-alt me-1"></i> Masuk
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - tambahkan padding-top untuk jarak dari navbar -->
+    <div class="hero-section animated-hero" style="padding-top: 120px;">
+        <div class="overlay"></div>
+        <div class="container position-relative">
+            <div class="row align-items-center">
+                <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="hero-content pe-lg-4">
+                        <h1 class="display-4 fw-bold text-success mb-4">REVIVA</h1>
+                        <p class="lead mb-4 text-emphasis">Mari bersama wujudkan lingkungan yang lebih bersih dengan mengkonversi minyak bekas menjadi pembersih lantai di Kampung Singabarong</p>
+                        <div class="d-flex gap-3 flex-wrap">
+                            <a href="register.html" class="btn btn-success btn-lg btn-pulse">
+                                <i class="fas fa-leaf me-2"></i>Mulai Berkontribusi
+                            </a>
+                            <a href="about.html" class="btn btn-outline-success btn-lg ">
+                                <i class="fas fa-info-circle me-2"></i>Pelajari Lebih Lanjut
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="hero-image-wrapper position-relative">
+                        <div class="hero-image-shape"></div>
+                        <img src="img/hero-image.jpg" alt="Reviva Hero" class="img-fluid rounded-3 shadow-lg hover-scale">
+                        <div class="hero-image-badge">
+                            <span class="badge bg-success p-3 rounded-pill">
+                                <i class="fas fa-recycle me-2"></i>Konversi Minyak Bekas
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="section" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title">Tentang Program</h2>
+            <div class="row">
+                <div class="col-md-8 mx-auto text-center">
+                    <p class="lead">REVIVA adalah program pemberdayaan Karang Taruna dalam mengolah minyak bekas menjadi pembersih lantai di Kampung Singabarong, Kabupaten Tasikmalaya.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section bg-light" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title">Fitur Utama</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="card-icon">
+                            <i class="fas fa-users text-success"></i>
+                        </div>
+                        <h4>Pendaftaran Online</h4>
+                        <p>Daftar dan laporkan minyak bekas kapan saja secara online</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-bar text-success"></i>
+                        </div>
+                        <h4>Manajemen Data</h4>
+                        <p>Pantau stok dan proses pengolahan minyak bekas</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="card-icon">
+                            <i class="fas fa-tasks text-success"></i>
+                        </div>
+                        <h4>Monitoring</h4>
+                        <p>Lacak progress pengolahan dan distribusi produk</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dampak Section -->
+    <section class="section bg-danger text-white" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title text-white">Dampak Minyak Bekas</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="impact-card">
+                        <i class="fas fa-tint fa-2x mb-3"></i>
+                        <h4>Pencemaran Air</h4>
+                        <p>1 liter minyak bekas dapat mencemari hingga 1 juta liter air tanah</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="impact-card">
+                        <i class="fas fa-lungs fa-2x mb-3"></i>
+                        <h4>Gangguan Kesehatan</h4>
+                        <p>Penggunaan minyak bekas berulang dapat memicu kanker dan penyakit berbahaya</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="impact-card">
+                        <i class="fas fa-seedling fa-2x mb-3"></i>
+                        <h4>Kerusakan Lingkungan</h4>
+                        <p>Pembuangan sembarangan merusak ekosistem dan kesuburan tanah</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manfaat Section -->
+    <section class="section" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title">Manfaat Program REVIVA</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-recycle text-success"></i>
+                        </div>
+                        <h4>Daur Ulang Berkelanjutan</h4>
+                        <ul class="benefit-list">
+                            <li>Mengubah limbah menjadi produk bernilai</li>
+                            <li>Mengurangi pencemaran lingkungan</li>
+                            <li>Menciptakan ekonomi sirkular</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-hand-holding-usd text-success"></i>
+                        </div>
+                        <h4>Pemberdayaan Ekonomi</h4>
+                        <ul class="benefit-list">
+                            <li>Menciptakan lapangan kerja baru</li>
+                            <li>Menghasilkan pendapatan tambahan</li>
+                            <li>Meningkatkan kesejahteraan masyarakat</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cara Kerja Section -->
+    <section class="section bg-light" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title">Cara Kerja REVIVA</h2>
+            <div class="timeline">
+                <div class="row">
+                    <div class="col-md-3 mb-4">
+                        <div class="step-card">
+                            <div class="step-number">1</div>
+                            <h5>Pengumpulan</h5>
+                            <p>Masyarakat mengumpulkan minyak bekas ke bank sampah</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="step-card">
+                            <div class="step-number">2</div>
+                            <h5>Penyaringan</h5>
+                            <p>Minyak disaring untuk menghilangkan kotoran</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="step-card">
+                            <div class="step-number">3</div>
+                            <h5>Pengolahan</h5>
+                            <p>Konversi minyak menjadi pembersih lantai</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="step-card">
+                            <div class="step-number">4</div>
+                            <h5>Distribusi</h5>
+                            <p>Produk didistribusikan ke masyarakat</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="section cta-section" data-aos="fade-up">
+        <div class="container">
+            <div class="cta-card text-center">
+                <h2 class="mb-4">Siap Bergabung dengan REVIVA?</h2>
+                <p class="lead mb-4">Mari bersama-sama menjaga lingkungan dan menciptakan perubahan positif</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="register.html" class="btn btn-success btn-lg">Daftar Sekarang</a>
+                    <a href="metodologi.html" class="btn btn-outline-success btn-lg">Pelajari Prosesnya</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer yang diperbaiki -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-about">
+                        <img src="img/logo.png" alt="REVIVA" height="40" class="mb-3">
+                        <h5 class="text-white">REVIVA</h5>
+                        <p class="text-light">Program Konversi Minyak Bekas untuk Lingkungan yang Lebih Bersih dan Berkelanjutan di Kampung Singabarong</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="text-white mb-4">Tautan Cepat</h5>
+                    <ul class="footer-links">
+                        <li><a href="about.html">Tentang Kami</a></li>
+                        <li><a href="metodologi.html">Metodologi</a></li>
+                        <li><a href="team.html">Tim Kami</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Kontak Kami</h5>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> Kampung Singabarong, Tasikmalaya</li>
+                        <li><i class="fas fa-phone"></i> +62 123 4567 890</li>
+                        <li><i class="fas fa-envelope"></i> info@reviva.com</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Media Sosial</h5>
+                    <div class="footer-social">
+                        <a href="#" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4 border-light">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="text-light mb-0">© 2024 REVIVA. Hak Cipta Dilindungi.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-light me-3">Kebijakan Privasi</a>
+                    <a href="#" class="text-light">Syarat & Ketentuan</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tambahkan Floating Action Button -->
+    <div class="floating-action-button">
+        <button class="btn btn-success rounded-circle" data-bs-toggle="modal" data-bs-target="#helpModal">
+            <i class="fas fa-question"></i>
+        </button>
+    </div>
+
+    <!-- Help Modal -->
+    <div class="modal fade" id="helpModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Butuh Bantuan?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-grid gap-2">
+                        <a href="https://wa.me/1234567890" class="btn btn-success">
+                            <i class="fab fa-whatsapp me-2"></i>Chat WhatsApp
+                        </a>
+                        <a href="tel:1234567890" class="btn btn-outline-success">
+                            <i class="fas fa-phone me-2"></i>Telepon
+                        </a>
+                        <a href="mailto:help@reviva.com" class="btn btn-outline-success">
+                            <i class="fas fa-envelope me-2"></i>Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title"></h5>
+                        <i class="fas fa-user-circle me-2"></i>Masuk ke REVIVA
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <!-- Logo di tengah -->
+                    <div class="text-center mb-4">
+                        <img src="img/logo.png" alt="REVIVA" height="60">
+                    </div>
+                    
+                    <form id="loginForm" onsubmit="return handleLogin(event)">
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <i class="fas fa-user me-2"></i>Username
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                                <input type="text" class="form-control" id="username" required 
+                                       placeholder="Masukkan username Anda">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <i class="fas fa-lock me-2"></i>Password
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                                <input type="password" class="form-control" id="password" required
+                                       placeholder="Masukkan password Anda">
+                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Checkbox Remember Me -->
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Ingat saya</label>
+                            <a href="#" class="float-end text-success">Lupa password?</a>
+                        </div>
+
+                        <div class="alert alert-danger d-none" id="loginError">
+                            <i class="fas fa-exclamation-circle me-2"></i>
+                            Username atau password salah!
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100 mb-3">
+                            <i class="fas fa-sign-in-alt me-2"></i>Masuk
+                        </button>
+
+                        <div class="text-center">
+                            <p class="mb-0">Belum punya akun? 
+                                <a href="register.html" class="text-success">Daftar sekarang</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <!-- Tambahkan script preloader di akhir body -->
+    <script>
+        window.addEventListener('load', function() {
+            const preloader = document.querySelector('.preloader');
+            preloader.classList.add('fade-out');
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        });
+    </script>
+    <!-- Sebelum closing body, tambahkan script AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inisialisasi AOS
+        AOS.init({
+            duration: 800,
+            offset: 100,
+            once: true
+        });
+        
+        // Tambahkan smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Tambahkan fungsi handleLogin
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorElement = document.getElementById('loginError');
+            
+            // Simulasi login sederhana
+            if (username === 'admin' && password === 'admin') {
+                window.location.href = '/dashboard-admin/dashboard-admin.html';
+                return false;
+            } else if (username === 'user' && password === 'user') {
+                window.location.href = '/dashboard-user/dashboard-user.html';
+                return false;
+            } else {
+                errorElement.classList.remove('d-none');
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
