@@ -136,32 +136,26 @@
                     <small class="text-white-50 text-uppercase">Menu Utama</small>
                 </div>
                 <div class="list-group list-group-flush">
-                    <a href="dashboard-admin.html" class="list-group-item list-group-item-action">
-                        <i class="fas fa-tachometer-alt me-2"></i>
-                        <span>Dashboard</span>
-                        <span class="badge rounded-pill bg-white text-success ms-auto">6</span>
+                    <a href="dashboard-user.html" class="list-group-item list-group-item-action">
+                        <i class="fas fa-home me-2"></i>
+                        <span>Overview</span>
                     </a>
-                    <a href="users.html" class="list-group-item list-group-item-action">
-                        <i class="fas fa-users me-2"></i>
-                        <span>Pengguna</span>
-                        <span class="badge rounded-pill bg-light text-dark ms-auto">50</span>
+                    <a href="laporan-user.html" class="list-group-item list-group-item-action">
+                        <i class="fas fa-plus-circle me-2"></i>
+                        <span>Lapor Minyak</span>
                     </a>
-                    <a href="minyak.html" class="list-group-item list-group-item-action">
-                        <i class="fas fa-oil-can me-2"></i>
-                        <span>Data Minyak</span>
+                    <a href="history-user.html" class="list-group-item list-group-item-action">
+                        <i class="fas fa-history me-2"></i>
+                        <span>Riwayat</span>
                         <i class="fas fa-chevron-right ms-auto small"></i>
                     </a>
                 </div>
 
                 <div class="menu-label ps-3 mb-2 mt-4">
-                    <small class="text-white-50 text-uppercase">Analisis</small>
+                    <small class="text-white-50 text-uppercase">Setting</small>
                 </div>
                 <div class="list-group list-group-flush">
-                    <a href="laporan.html" class="list-group-item list-group-item-action">
-                        <i class="fas fa-chart-bar me-2"></i>
-                        <span>Laporan</span>
-                    </a>
-                    <a href="pengaturan.html" class="list-group-item list-group-item-action active">
+                    <a href="pengaturan-user.html" class="list-group-item list-group-item-action active">
                         <i class="fas fa-cog me-2"></i>
                         <span>Pengaturan</span>
                     </a>
@@ -172,10 +166,10 @@
 
             <div class="sidebar-footer p-3">
                 <div class="d-flex align-items-center mb-3">
-                    <img src="https://ui-avatars.com/api/?name=Admin+User" class="rounded-circle me-2" width="32">
+                    <img src="https://ui-avatars.com/api/?name=User+Name" class="rounded-circle me-2" width="32">
                     <div class="user-info">
-                        <h6 class="mb-0">Admin User</h6>
-                        <small class="text-white-50">Super Admin</small>
+                        <h6 class="mb-0">User Name</h6>
+                        <small class="text-white-50">Member</small>
                     </div>
                 </div>
                 <a href="#help" class="btn btn-outline-light btn-sm w-100">
@@ -193,22 +187,12 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item dropdown me-3">
-                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown">
-                                <i class="fas fa-bell"></i>
-                                <span class="badge bg-danger">3</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">Notifikasi baru</a></li>
-                                <li><a class="dropdown-item" href="#">Pembaruan sistem</a></li>
-                            </ul>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                <i class="fas fa-user-shield me-2"></i>Admin
+                                <i class="fas fa-user me-2"></i>User Name
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#profile">Profil</a></li>
+                                <li><a class="dropdown-item" href="#profile">Profile</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="index.html">Logout</a></li>
                             </ul>
@@ -230,16 +214,6 @@
                                     <i class="fas fa-user me-2"></i>Profil
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#aplikasi">
-                                    <i class="fas fa-cog me-2"></i>Aplikasi
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#notifikasi">
-                                    <i class="fas fa-bell me-2"></i>Notifikasi
-                                </a>
-                            </li>
                         </ul>
 
                         <!-- Tab content -->
@@ -251,7 +225,7 @@
                                         <div class="row">
                                             <div class="col-md-3 text-center mb-4">
                                                 <div class="profile-image-container">
-                                                    <img src="https://ui-avatars.com/api/?name=Admin+User" 
+                                                    <img src="https://ui-avatars.com/api/?name=User+Name" 
                                                          class="profile-image rounded-circle" 
                                                          alt="Profile">
                                                     <button class="btn btn-light profile-image-edit">
@@ -264,11 +238,11 @@
                                                     <div class="row mb-3">
                                                         <div class="col-md-6">
                                                             <label class="form-label">Nama Lengkap</label>
-                                                            <input type="text" class="form-control" value="Admin User">
+                                                            <input type="text" class="form-control" value="Username">
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label class="form-label">Email</label>
-                                                            <input type="email" class="form-control" value="admin@reviva.com">
+                                                            <input type="email" class="form-control" value="username@reviva.com">
                                                         </div>
                                                     </div>
                                                     <div class="row mb-3">
@@ -278,80 +252,11 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label class="form-label">Role</label>
-                                                            <input type="text" class="form-control" value="Super Admin" readonly>
+                                                            <input type="text" class="form-control" value="User" readonly>
                                                         </div>
                                                     </div>
                                                     <button type="submit" class="btn btn-success">Simpan Perubahan</button>
                                                 </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Aplikasi Tab -->
-                            <div class="tab-pane fade" id="aplikasi">
-                                <div class="card shadow-sm">
-                                    <div class="card-body">
-                                        <h5 class="card-title mb-4">Pengaturan Aplikasi</h5>
-                                        <form>
-                                            <div class="mb-3">
-                                                <label class="form-label">Nama Aplikasi</label>
-                                                <input type="text" class="form-control" value="REVIVA">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Zona Waktu</label>
-                                                <select class="form-select">
-                                                    <option selected>Asia/Jakarta (WIB)</option>
-                                                    <option>Asia/Makassar (WITA)</option>
-                                                    <option>Asia/Jayapura (WIT)</option>
-                                                </select>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Maintenance Mode</label>
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" role="switch">
-                                                    <label class="form-check-label">Aktifkan mode maintenance</label>
-                                                </div>
-                                            </div>
-                                            <button type="submit" class="btn btn-success">Simpan Pengaturan</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Notifikasi Tab -->
-                            <div class="tab-pane fade" id="notifikasi">
-                                <div class="card shadow-sm">
-                                    <div class="card-body">
-                                        <h5 class="card-title mb-4">Pengaturan Notifikasi</h5>
-                                        <div class="list-group">
-                                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>
-                                                    <h6 class="mb-1">Notifikasi Email</h6>
-                                                    <small class="text-muted">Terima pemberitahuan via email</small>
-                                                </div>
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" role="switch" checked>
-                                                </div>
-                                            </div>
-                                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>
-                                                    <h6 class="mb-1">Notifikasi Desktop</h6>
-                                                    <small class="text-muted">Tampilkan notifikasi di browser</small>
-                                                </div>
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" role="switch" checked>
-                                                </div>
-                                            </div>
-                                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>
-                                                    <h6 class="mb-1">Notifikasi Aktivitas</h6>
-                                                    <small class="text-muted">Pengumpulan minyak baru</small>
-                                                </div>
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" role="switch" checked>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -365,6 +270,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/dashboard.js"></script>
+    <script src="/dashboard.js"></script>
 </body>
 </html>
