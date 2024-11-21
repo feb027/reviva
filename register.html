@@ -494,13 +494,17 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             const errorElement = document.getElementById('loginError');
+
+            // Deteksi environment
+            const isGitHubPages = window.location.hostname.includes('github.io');
+            const basePath = isGitHubPages ? '/reviva' : '';
             
             // Simulasi login sederhana
             if (username === 'admin' && password === 'admin') {
-                window.location.href = '/dashboard-admin/dashboard-admin.html';
+                window.location.href = `${basePath}/dashboard-admin/dashboard-admin.html`;
                 return false;
             } else if (username === 'user' && password === 'user') {
-                window.location.href = '/dashboard-user/dashboard-user.html';
+                window.location.href = `${basePath}/dashboard-user/dashboard-user.html`;
                 return false;
             } else {
                 errorElement.classList.remove('d-none');
